@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt 5: biblioteka</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Dodaj książkę:</h1>
+        <label>tytuł książki: <input type="text" id="title"></label>
+        <label>autor książki: <input type="text" id="author"></label>
+        <label>data wydania książki: <input type="text" id="publishYear"></label>
+        <button id="addBook">Dodaj książkę</button>
+    </section>
+    <section>
+        <h1>Wyszukaj książkę:</h1>
+        <label>tytuł książki: <input type="text" id="searchTitle"></label>
+        <button id="searchBook">Znajdź książkę</button>
+        <div id="searchResult"></div>
+    </section>
+
+
+    <script>
+        class Book {
+            #title; 
+            #author; 
+            #publishYear; 
+
+            constructor(title, author = 'brak', publishYear = 'brak') {
+                this.#title = title;
+                this.#author = author; 
+                this.#publishYear = publishYear; 
+            }
+
+            showDetails() {
+                return `Tytuł: ${this.#title} , Autor: ${this.#author} , Data wydania: ${this.#publishYear}`;
+            }
+        }
+    
+
+        class Library {
+            #bookCollection;
+            constructor() {
+                this.#bookCollection = new Map();
+                this.init();
+            }
+
+            init() {
+                document.getElementById('addBook').addEventListener('click', () => this.#addBook());
+                document.getElementById('searchBook').addEventListener('click', () => this.#searchBook());
+            }
+
+            #addBook() {
+                const title = document.getElementById('title').value; 
+                const author = document.getElementById('author').value;
+                const publishYear = document.getElementById('publishYear').value; 
+
+                const book = new Book(title, author, publishYear); 
+                this.#bookCollection.set(title, book); 
+
+                alert('Książka została dodana do zbioru'); 
+                console.log(this.#bookCollection);
+            }
+
+            #searchBook() {
+                const title = document.getElementById('searchTitle').value; 
+                const book = this.#bookCollection.get(title);
+                const resultElement = document.getElementById('searchResult');
+                if(book) {
+                    resultElement.textContent = book.showDetails(); 
+                } else {
+                    resultElement.textContent = 'nie mamy takiej książki w zbiorze';
+                }
+            }
+        }
+        const library = new Library();
+        //const book = new Book('Między Bogiem a prawdą', 'Abramowicz' '2023'); 
+        //console.log(book); 
+        //book.showDetails(); 
+
+    </script>
+</body>
+</html>
