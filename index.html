@@ -3,25 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sekundomierz</title>
-    <style></style>
-</head>
-<body>
-    <script>
-        const clock = () => {
-            let seconds = 0; 
-            document.body.textContent = 0 + " sekund"; 
-
-            const timer = () => {
-                seconds++; 
-                document.body.textContent = seconds + " sekund";
-            }
-            return timer 
+    <title>Aktualna godzina</title>
+    <style>
+        * {
+            margin: 0; 
         }
 
-        const start = clock(); 
-
-        setInterval(start, 1000); 
+        div {
+            line-height: 100vh;
+            text-align: center;
+            font-size: 50px;
+            font-family: arial;
+        }
+        span {
+            font-weight: bold;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        Godzina: <span></span>
+    </div>
+    <script>
+        const clock = () => {
+            const time = new Date(); 
+            const seconds = time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds(); 
+            const minutes = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes(); 
+            const hours = time.getHours() < 10 ? "0" + time.getHours() : time.getHours(); 
+            document.querySelector('.clock span').textContent = `${hours}:${minutes}:${seconds}`
+        }
+        setInterval(clock, 1000); 
+        
     </script>
 </body>
 </html>
