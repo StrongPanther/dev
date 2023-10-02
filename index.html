@@ -3,29 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sekundomierz</title>
     <style></style>
 </head>
 <body>
     <script>
-        const user = (name = "", age) => {
-            let userName = name;
-            let userAge = age; 
+        const clock = () => {
+            let seconds = 0; 
+            document.body.textContent = 0 + " sekund"; 
 
-            function showName() {
-                console.log(`Cześć ${userName}, ${userAge >= 18 ? 'Możesz kupić piwo' : 'Nie możesz kupić piwa'}`);
+            const timer = () => {
+                seconds++; 
+                document.body.textContent = seconds + " sekund";
             }
-       return showName
-    }
+            return timer 
+        }
 
-    const mieszko = user("Mieszko", 20);
-    const jagienka = user("Jagienka", 17);
-    mieszko()
-    jagienka()
+        const start = clock(); 
 
-    const noName = user();
-    noName()
-
+        setInterval(start, 1000); 
     </script>
 </body>
 </html>
