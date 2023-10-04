@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Filter (i przypomnienie map)
+        //Filter 
+        const arr = [34, 219, 109, 2934, 12, 10, 29];
+
+        const oddNumbers = arr.filter(number => number % 2);
+        const evenNumbers = arr.filter(number => !(number % 2));
+        const numbersBiggerThen100 = arr.filter(number => number > 100);
+
+        //Map 
+        const double = arr.map(number => number * 2); 
+        const people = arr.map(number => number + " osób");
+
+        //forEach 
+        arr.forEach((number, index) => arr[index] = number * 2); 
+    </script>
+</body>
+</html>
